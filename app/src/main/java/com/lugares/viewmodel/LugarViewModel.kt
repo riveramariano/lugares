@@ -9,12 +9,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class LugarViewModel(application: Application) : AndroidViewModel(application) {
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is lugar Fragment"
-    }
-    val text: LiveData<String> = _text
+    val getAllData: LiveData<List<Lugar>>
 
-    private val getAllData: LiveData<List<Lugar>>
     private val repository: LugarRepository
 
     init {
