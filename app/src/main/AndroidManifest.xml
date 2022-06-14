@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Lugares"
         tools:targetApi="31">
         <activity
-            android:name=".Principal"
+            android:name=".PrincipalActiviy"
             android:exported="false"
             android:label="@string/title_activity_principal"
             android:theme="@style/Theme.Lugares.NoActionBar" />
