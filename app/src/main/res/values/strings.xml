@@ -24,4 +24,11 @@
     <string name="msg_telefono">Teléfono (xxxx-xxxx)</string>
     <string name="msg_web">Sitio Web</string>
     <string name="bt_agregar">Agregar</string>
+
+    <string name="menu_delete">Eliminar Lugar</string>
+    <string name="deleted">Eliminado</string>
+
+    <string name="si">Si</string>
+    <string name="no">No</string>
+    <string name="seguro_borrar">Seguro que desea borrar</string>
 </resources>
