@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.lugares.R
 import com.lugares.databinding.FragmentUpdateLugarBinding
 import com.lugares.model.Lugar
@@ -18,6 +19,8 @@ class UpdateLugarFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var lugarViewModel: LugarViewModel
 
+    private val args by navArgs<UpdateLugarFragmentArgs>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,6 +28,11 @@ class UpdateLugarFragment : Fragment() {
         _binding = FragmentUpdateLugarBinding.inflate(inflater, container, false)
 
         lugarViewModel = ViewModelProvider(this).get(LugarViewModel::class.java)
+
+        binding.etNombre.setText(args.lugar.nombre)
+        binding.etCorreo.setText(args.lugar.correo)
+        binding.etWeb.setText(args.lugar.sitioWeb)
+        binding.etTelefono.setText(args.lugar.telefono)
 
         binding.btAgregar.setOnClickListener { updateLugar() }
         // Corregir este nombre, se pone igual que en AddLugarFragment
@@ -39,7 +47,7 @@ class UpdateLugarFragment : Fragment() {
             var telefono = binding.etTelefono.text.toString()
             var web = binding.etWeb.toString()
             var lugar = Lugar(
-                0,
+                args.lugar.id,
                 nombre,
                 correo,
                 telefono,
