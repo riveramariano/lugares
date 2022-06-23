@@ -44,4 +44,62 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/bt_agregar" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="25sp"
+        android:padding="10sp"
+        tools:stretchColumns="*">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_latitud1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Latitud"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tv_longitud1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Longitud"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tv_altura1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Altura"
+                android:textAlignment="center" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_latitud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tv_longitud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tv_altura"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center" />
+        </TableRow>
+
+    </TableLayout>
 </LinearLayout>

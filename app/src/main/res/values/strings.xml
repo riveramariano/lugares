@@ -31,4 +31,12 @@
     <string name="si">Si</string>
     <string name="no">No</string>
     <string name="seguro_borrar">Seguro que desea borrar</string>
+
+    <string name="latitud">Latitud</string>
+    <string name="longitud">Longitud</string>
+    <string name="altura">Altura</string>
+    <string name="msg_datos">No hay datos</string>
+    <string name="msg_saludos">Hola</string>
+    <string name="msg_mensaje_correo">Saludos</string>
+    <string name="error">N/A</string>
 </resources>

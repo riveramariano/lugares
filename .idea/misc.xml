@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/mar19/AndroidStudioProjects/lugares/app/src/main/res/drawable/ic_add_lugar.xml" value="0.115" />
+        <entry key="..\:/Users/mar19/AndroidStudioProjects/lugares/app/src/main/res/drawable/ic_email.xml" value="0.1845" />
+        <entry key="..\:/Users/mar19/AndroidStudioProjects/lugares/app/src/main/res/drawable/ic_location.xml" value="0.115" />
         <entry key="..\:/Users/mar19/AndroidStudioProjects/lugares/app/src/main/res/layout/activity_main.xml" value="0.2504528985507246" />
         <entry key="..\:/Users/mar19/AndroidStudioProjects/lugares/app/src/main/res/layout/activity_principal.xml" value="0.2786458333333333" />
         <entry key="..\:/Users/mar19/AndroidStudioProjects/lugares/app/src/main/res/layout/app_bar_principal.xml" value="0.2786458333333333" />
