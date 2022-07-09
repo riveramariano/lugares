@@ -80,7 +80,7 @@ class AddLugarFragment : Fragment() {
             var telefono = binding.etTelefono.text.toString()
             var web = binding.etWeb.toString()
             var lugar = Lugar(
-                0,
+                "",
                 nombre,
                 correo,
                 telefono,
