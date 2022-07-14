@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context=".AddLugarFragment" >
+    tools:context=".ui.lugar.AddLugarFragment" >
 
     <EditText
         android:id="@+id/et_nombre"
@@ -102,4 +102,13 @@
         </TableRow>
 
     </TableLayout>
+
+    <ImageView
+        android:id="@+id/imagen"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:contentDescription="@string/msg_imagen"
+        android:scaleType="centerInside"
+        tools:ignore="ImageContrastCheck"
+        tools:src="@tools:sample/backgrounds/scenic" />
 </LinearLayout>
