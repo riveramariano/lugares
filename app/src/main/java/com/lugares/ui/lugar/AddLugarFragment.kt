@@ -15,7 +15,6 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
@@ -24,9 +23,10 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 import com.lugares.R
 import com.lugares.databinding.FragmentAddLugarBinding
-import com.lugares.databinding.FragmentLugarBinding
 import com.lugares.model.Lugar
 import com.lugares.utiles.AudioUtiles
 import com.lugares.utiles.ImagenUtiles
@@ -54,7 +54,7 @@ class AddLugarFragment : Fragment() {
         binding.btAgregar.setOnClickListener {
             if (binding.etNombre.text.toString().isNotEmpty()) {
                 binding.progressBar.visibility = ProgressBar.VISIBLE
-                binding.msgMensage.text = "Subiendo Nota de Audio"
+                binding.msgMensaje.text = "Subiendo Nota de Audio"
                 binding.msgMensaje.visibility = TextView.VISIBLE
 
                 subeAudioNube()
@@ -66,11 +66,11 @@ class AddLugarFragment : Fragment() {
         audioUtiles = AudioUtiles(
             requireActivity(),
             requireContext(),
-            binding.tbAccion,
+            binding.btAccion,
             binding.btPlay,
             binding.btDelete,
-            "Grabando nota de audio",
-            "Nota de audio detenida"
+            getString(R.string.msg_graba_audio),
+            getString(R.string.msg_detener_audio)
         )
 
         tomarFotoActivity = registerForActivityResult(
@@ -83,9 +83,9 @@ class AddLugarFragment : Fragment() {
 
         imagenUtiles = ImagenUtiles(
             requireContext(),
-            binding.btFoto,
-            binding.btRotarL,
-            binding.btRotarR,
+            binding.btPhoto,
+            binding.btRotaL,
+            binding.btRotaR,
             binding.imagen,
             tomarFotoActivity
         )
@@ -125,7 +125,7 @@ class AddLugarFragment : Fragment() {
     private fun subeImagenNube(rutaAudio: String) {
         binding.msgMensaje.text = "Subiendo Imagen"
         val imageFile = imagenUtiles.imagenFile
-        if (imageFile.exists() && imageFile.isFile && imageFile.canRead()) {
+        if (imagenUtiles.isImagenFileInitialize() && imageFile.exists() && imageFile.isFile && imageFile.canRead()) {
             val ruta = Uri.fromFile(imageFile)
             val referencia: StorageReference = Firebase.storage.reference.child(
                 "lugaresApp/${Firebase.auth.currentUser?.uid}/imagenes/${imageFile.name}"
@@ -136,22 +136,18 @@ class AddLugarFragment : Fragment() {
                     val downloadUrl = referencia.downloadUrl
                     downloadUrl.addOnSuccessListener {
                         val rutaImagen = it.toString()
-                        agregarLugar(rutaAudio, rutaImagen)
+                        addLugar(rutaAudio, rutaImagen)
                     }
                 }
             uploadTask
                 .addOnFailureListener {
                     Toast.makeText(context, "Error subiendo la imagen", Toast.LENGTH_SHORT).show()
-                    agregarLugar(rutaAudio, "")
+                    addLugar(rutaAudio, "")
                 }
         } else {
             Toast.makeText(context, "No se sube imagen", Toast.LENGTH_SHORT).show()
-            agregarLugar(rutaAudio, "")
+            addLugar(rutaAudio, "")
         }
-    }
-
-    private fun agregarLugar(rutaAudio: String, rutaImagen: String) {
-
     }
 
     private fun ubicaGPS() {
@@ -185,7 +181,7 @@ class AddLugarFragment : Fragment() {
         }
     }
 
-    private fun addLugar() {
+    private fun addLugar(rutaAudio: String, rutaImagen: String) {
         var nombre = binding.etNombre.text.toString()
         if (nombre.isNotEmpty()) { // Podemos insertar el lugar
             var correo = binding.etCorreo.text.toString()
@@ -200,8 +196,8 @@ class AddLugarFragment : Fragment() {
                 0.0,
                 0.0,
                 0.0,
-                "",
-                ""
+                rutaAudio,
+                rutaImagen
             )
             lugarViewModel.addLugar(lugar)
             Toast.makeText(requireContext(), "Lugar Agregado", Toast.LENGTH_SHORT).show()
